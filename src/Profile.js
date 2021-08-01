@@ -3,16 +3,8 @@ import React from "react";
 
 class Profile extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            date: 0
-        };
-    }
-
-
     componentDidMount() {
-        this.props.parentCallBack(0);
+        this.props.reset();
     }
     
 

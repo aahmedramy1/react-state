@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       person: {
-        fullName: "Ahmed Ramy",
+        fullName: "Elon Musk",
         bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, repudiandae!",
         imgSrc: "/ElonMusk.jpg",
         profession: "Software Engineer"
@@ -26,18 +26,16 @@ class App extends React.Component {
     this.setState({
         date: this.state.date + 1
     });
-}
+  }
 
-componentWillUnmount() {
-    clearInterval(this.timerID);
-}
 
-componentDidMount() {
-    
-    this.timerID = setInterval(
+reset = () =>
+{
+  clearInterval(this.timerID);
+  this.setState({date: 0});
+  this.timerID = setInterval(
     () => this.tick(),
-    1000
-);
+    1000);
 }
 
   handleClick=()=>this.setState({shows:!this.state.shows})
@@ -45,7 +43,7 @@ componentDidMount() {
     return (
         <div className = "d-flex flex-column justify-content-center align-items-center">
           <button type="button" className ="btn btn-primary" onClick = {this.handleClick}>{ this.state.shows ? "Hide Profile" : "Show Profile"}</button>
-          {this.state.shows && <Profile user = {this.state.person} parentCallBack = {this.handleCallBack} />}
+          {this.state.shows && <Profile user = {this.state.person} reset = {this.reset} />}
           <h2> It has been {this.state.date}. </h2>
         </div>
       );
